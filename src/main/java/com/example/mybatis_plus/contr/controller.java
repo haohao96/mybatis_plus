@@ -26,11 +26,11 @@ public class controller {
         userList.forEach(System.out::println);
     }
 
-    @RequestMapping("/insert")
+    /*@RequestMapping("/insert")
     public void insertTest()
     {
         User user=new User();
         userMapper.insert(user);
         assertThat(user.getId()).isNotNull();
-    }
+    }*/
 }
