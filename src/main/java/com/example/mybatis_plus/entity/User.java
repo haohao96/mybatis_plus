@@ -1,6 +1,10 @@
 package com.example.mybatis_plus.entity;
 
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -29,6 +33,18 @@ public class User implements Serializable {
     @ApiModelProperty("邮箱")
     private String email;
 
+    @ApiModelProperty("逻辑删除")
+    @TableLogic(value = "1",delval = "0")
+    @TableField("logicFlag")
+    private int logicFlag;
+
+    public int getLogicFlag() {
+        return logicFlag;
+    }
+
+    public void setLogicFlag(int logicFlag) {
+        this.logicFlag = logicFlag;
+    }
 
     public Long getId() {
         return id;
@@ -65,10 +81,11 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-        "id=" + id +
-        ", name=" + name +
-        ", age=" + age +
-        ", email=" + email +
-        "}";
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", logicFlag=" + logicFlag +
+                '}';
     }
 }

@@ -5,3 +5,9 @@ spring:
     password: piyihao
     driver: com.mysql.cj.jdbc.Driver
 
+#mybatis-plus:
+#  global-config:
+#    db-config:
+#      logic-not-delete-value: 1
+#      logic-delete-value: -1
+

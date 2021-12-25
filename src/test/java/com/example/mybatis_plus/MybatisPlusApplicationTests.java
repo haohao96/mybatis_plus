@@ -1,17 +1,22 @@
 package com.example.mybatis_plus;
 
-import com.baomidou.mybatisplus.test.autoconfigure.MybatisPlusTest;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.example.mybatis_plus.entity.User;
 import com.example.mybatis_plus.mapper.UserMapper;
-import com.example.mybatis_plus.pojo.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-@MybatisPlusTest
+@SpringBootTest
 public class MybatisPlusApplicationTests {
 
     @Resource
@@ -22,6 +27,21 @@ public class MybatisPlusApplicationTests {
         User user = new User();
         userMapper.insert(user);
         assertThat(user.getId()).isNotNull();
+    }
+
+    @Test
+    public void test()
+    {
+        HashMap<String, String> map = new HashMap<String, String>(){{put("id","2");put("name","Jack");}};
+        userMapper.deleteById(2);
+        System.out.println("userMapper.selectById(2)===="+userMapper.selectById(2));
+        List<User> users = userMapper.selectList(new QueryWrapper<User>()
+//                .allEq(( k, v)->k.indexOf("i")>=0,map)
+                .eq("id",2)
+//                .likeLeft("name","J")
+        );
+        System.out.println("wrapper 条件查询得到的：");
+        users.forEach(System.out::println);
     }
 
 }
