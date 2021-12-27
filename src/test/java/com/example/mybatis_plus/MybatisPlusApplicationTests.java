@@ -1,6 +1,7 @@
 package com.example.mybatis_plus;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatis_plus.entity.User;
 import com.example.mybatis_plus.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
@@ -15,19 +16,18 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 @SpringBootTest
 public class MybatisPlusApplicationTests {
 
     @Resource
     private UserMapper userMapper;
 
-    @Test
+    /*@Test
     void testInsert() {
         User user = new User();
         userMapper.insert(user);
         assertThat(user.getId()).isNotNull();
-    }
+    }*/
 
     @Test
     public void test()
@@ -42,6 +42,14 @@ public class MybatisPlusApplicationTests {
         );
         System.out.println("wrapper 条件查询得到的：");
         users.forEach(System.out::println);
+    }
+
+    @Test
+    public void testPage()
+    {
+        Page<User> page=new Page<>(2,2);
+        Page<User> userPage = userMapper.selectPage(page,null);
+        userPage.getRecords().forEach(System.out::println);
     }
 
 }

@@ -17,6 +17,7 @@ import java.util.List;
 @SpringBootApplication
 @MapperScan("com.example.mybatis_plus.mapper")
 @EnableSwagger2
+@RunWith(SpringJUnit4ClassRunner.class)
 public class MybatisPlusApplication {
 
     @Resource
